@@ -35,11 +35,17 @@ class AnchorIdentifierLinkHandler(LinkHandler):
     @classmethod
     def get_renderer(cls):
         renderer = getattr(cls, "_renderer", None)
-        if renderer is None:
-            renderer = getattr(settings, "DRAFTAIL_ANCHORS_RENDERER", render_a)
-            if isinstance(renderer, str):
-                renderer = import_string(renderer)
-            cls._renderer = renderer
+        if renderer is not None:
+            return renderer
+
+        renderer = getattr(settings, "DRAFTAIL_ANCHORS_RENDERER", render_a)
+        if isinstance(renderer, str):
+            renderer = import_string(renderer)
+
+        if not callable(renderer):
+            renderer = render_a
+
+        cls._renderer = renderer
         return renderer
 
     @classmethod
