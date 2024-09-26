@@ -16,3 +16,6 @@ npm-debug.log*
 *.ipr
 *.iws
 .vscode
+
+# Build files
+build/
