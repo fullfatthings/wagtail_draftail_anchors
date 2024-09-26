@@ -15,6 +15,8 @@ const DECORATORS = [];
 const CONTROLS = [];
 const DRAFT_PLUGINS = [];
 
+const ANCHOR_IDENTIFIER = "draftail-anchor"
+
 const registerDecorator = (decorator) => {
   DECORATORS.push(decorator);
   return DECORATORS;
@@ -220,7 +222,7 @@ class UneditableAnchorDecorator extends React.Component {
 }
 
 function headingStrategy(contentBlock, callback, contentState) {
-  if (contentBlock.getType().includes("header")) {
+  if (contentBlock.getType().includes(ANCHOR_IDENTIFIER)) {
     callback(0, contentBlock.getLength());
   }
 }
@@ -244,7 +246,7 @@ registerDraftPlugin({
     const selection = editorState.getSelection();
     let newEditorState = editorState;
     for (let [key, block] of blocks.entries()) {
-      if (block.getType().includes("header")) {
+      if (block.getType().includes(ANCHOR_IDENTIFIER)) {
         let blockSelection = SelectionState.createEmpty(key);
         let newData = new Map();
         newData.set("anchor", slugify(block.getText().toLowerCase()));
