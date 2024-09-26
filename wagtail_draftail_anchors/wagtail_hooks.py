@@ -1,3 +1,4 @@
+from django.conf import settings
 from wagtail import VERSION as wagtail_version
 import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 
@@ -7,8 +8,6 @@ else:
     from wagtail.core import hooks
 
 from .rich_text import (
-    AnchorBlockConverter,
-    AnchorBlockHandler,
     AnchorIndentifierEntityElementHandler,
     AnchorIdentifierLinkHandler,
     anchor_identifier_entity_decorator,
@@ -44,7 +43,7 @@ def register_rich_text_anchor_identifier_feature(features):
         draftail_features.EntityFeature(
             control,
             js=["wagtaildraftailanchors/js/wagtail-draftail-anchor.js"],
-        ),
+        )
     )
 
     features.register_converter_rule(
@@ -58,72 +57,6 @@ def register_rich_text_anchor_identifier_feature(features):
             },
             "to_database_format": {
                 "entity_decorators": {type_: anchor_identifier_entity_decorator}
-            },
-        },
-    )
-
-    features.register_converter_rule(
-        "contentstate",
-        "h1",
-        {
-            "from_database_format": {"h1": AnchorBlockHandler("header-one")},
-            "to_database_format": {
-                "block_map": {"header-one": AnchorBlockConverter("h1")}
-            },
-        },
-    )
-
-    features.register_converter_rule(
-        "contentstate",
-        "h2",
-        {
-            "from_database_format": {"h2": AnchorBlockHandler("header-two")},
-            "to_database_format": {
-                "block_map": {"header-two": AnchorBlockConverter("h2")}
-            },
-        },
-    )
-
-    features.register_converter_rule(
-        "contentstate",
-        "h3",
-        {
-            "from_database_format": {"h3": AnchorBlockHandler("header-three")},
-            "to_database_format": {
-                "block_map": {"header-three": AnchorBlockConverter("h3")}
-            },
-        },
-    )
-
-    features.register_converter_rule(
-        "contentstate",
-        "h4",
-        {
-            "from_database_format": {"h4": AnchorBlockHandler("header-four")},
-            "to_database_format": {
-                "block_map": {"header-four": AnchorBlockConverter("h4")}
-            },
-        },
-    )
-
-    features.register_converter_rule(
-        "contentstate",
-        "h5",
-        {
-            "from_database_format": {"h5": AnchorBlockHandler("header-five")},
-            "to_database_format": {
-                "block_map": {"header-five": AnchorBlockConverter("h5")}
-            },
-        },
-    )
-
-    features.register_converter_rule(
-        "contentstate",
-        "h6",
-        {
-            "from_database_format": {"h6": AnchorBlockHandler("header-six")},
-            "to_database_format": {
-                "block_map": {"header-six": AnchorBlockConverter("h6")}
             },
         },
     )
