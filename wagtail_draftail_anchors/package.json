@@ -24,8 +24,8 @@
     "@babel/preset-react": "^7.9.4",
     "babel-loader": "^8.1.0",
     "prettier": "2.0.5",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "slugify": "^1.4.0"
