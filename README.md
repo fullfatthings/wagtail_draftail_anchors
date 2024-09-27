@@ -1,7 +1,9 @@
-# Wagtail Draftail Anchors
+# Wagtail Draftail Anchors (modified)
 
-Adds the ability to add and edit anchors in the Draftail rich text editor, as well as automatically adding
-(slug-form) anchor ids to all headings.
+Adds the ability to add and edit anchors in the Draftail rich text editor
+
+This is a modified fork of [jacobtoppm/wagtail_draftail_anchors](https://github.com/jacobtoppm/wagtail_draftail_anchors#readme)
+which removes automatic header anchoring
 
 ## Installation
 
